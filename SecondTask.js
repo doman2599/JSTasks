@@ -1,16 +1,13 @@
 function duplicateArgs(){
-var b = []
-for (let i = 0; i < duplicateArgs.arguments.length; i++){
-  b.push(duplicateArgs.arguments[i])
-}
-for (let i = 0; i < b.length; i++) {
-  for (let j = i+1; j < b.length; j++) {
-    if(b[i] === b[j]){
-      return true;
-    }
+  test = [].slice.call(duplicateArgs.arguments)   
+    test = test.filter(function (elem, pos, arr) {
+     return pos !== arr.indexOf(elem) || pos !== arr.lastIndexOf(elem);
+  });
+  if (test == ''){
+    return false  
+  }
+  else{
+    return true
   }
 }
-return false;
-}
-
-console.log(duplicateArgs('abc', 'sso', 'js', 'true', 'else', 'js'));
+console.log(duplicateArgs(35, 14, 40, 14));
